@@ -1,0 +1,18 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Website Content"
+    files:
+      - label: "Business Info"
+        name: "business"
+        file: "content/business.json"
+        fields:
+          - {label: "Business Name", name: "name", widget: "string"}
+          - {label: "Phone Number", name: "phone", widget: "string"}
+          - {label: "Address", name: "address", widget: "string"}
+          - {label: "Hours", name: "hours", widget: "string"}
