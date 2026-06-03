@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMV Detailers — Premium Car Detailing, Potomac Falls VA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --cream: #ede9e1;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --charcoal: #1c1c1c;
+    --mid: #888;
+    --accent: #c9a84c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.7; transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold); color: var(--black) !important;
+    padding: 0.5rem 1.25rem; opacity: 1 !important;
+    border-radius: 2px; font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 30%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      linear-gradient(165deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+  }
+
+  .hero-lines {
+    position: absolute; inset: 0; overflow: hidden; opacity: 0.04;
+  }
+
+  .hero-lines svg { width: 100%; height: 100%; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); opacity: 0.9;
+    position: relative;
+  }
+  .hero-badge::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px; background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 12vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title span {
+    display: block; color: var(--gold);
+  }
+
+  .hero-sub {
+    max-width: 500px;
+    font-size: 1rem; line-height: 1.7;
+    color: rgba(245,242,237,0.55);
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 1.5rem;
+    position: relative;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold); color: var(--black);
+    padding: 0.875rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    color: var(--white); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.6; transition: opacity 0.2s;
+  }
+  .btn-ghost:hover { opacity: 1; }
+  .btn-ghost svg { width: 16px; height: 16px; }
+
+  .hero-rating {
+    position: absolute; bottom: 5rem; right: 3rem;
+    text-align: right;
+  }
+
+  .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 0.1em; }
+  .rating-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: var(--gold); line-height: 1;
+  }
+  .rating-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,242,237,0.4);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 3rem; }
+
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 1.5rem; height: 1px; background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.04em; line-height: 1;
+    color: var(--white); margin-bottom: 1rem;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--charcoal); }
+
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem;
+  }
+
+  .services-sub {
+    max-width: 340px;
+    font-size: 0.9rem; line-height: 1.7;
+    color: rgba(245,242,237,0.45);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 4px; overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--charcoal);
+    padding: 2.5rem 2rem;
+    transition: background 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover { background: rgba(201,168,76,0.05); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 1.75rem; margin-bottom: 1.25rem; display: block;
+  }
+
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 0.05em;
+    margin-bottom: 0.75rem; color: var(--white);
+  }
+
+  .service-desc {
+    font-size: 0.85rem; line-height: 1.65;
+    color: rgba(245,242,237,0.45);
+  }
+
+  .service-price {
+    margin-top: 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.25rem; color: var(--gold); letter-spacing: 0.05em;
+  }
+
+  /* ── WHY US ── */
+  #why {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+
+  .why-visual {
+    position: relative; height: 480px;
+  }
+
+  .why-block {
+    position: absolute;
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .why-block.large {
+    left: 0; top: 0; right: 20%; bottom: 20%;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  }
+
+  .why-block.small {
+    right: 0; bottom: 0; left: 50%; top: 55%;
+    background: var(--gold);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+  }
+
+  .why-block.small .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; color: var(--black); line-height: 1;
+  }
+  .why-block.small .small-label {
+    font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(0,0,0,0.65); margin-top: 0.25rem;
+  }
+
+  .why-block.large .block-tag {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+
+  .why-block.large .block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; line-height: 1.05;
+  }
+
+  .why-points { list-style: none; }
+  .why-points li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(245,242,237,0.07);
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .why-points li:last-child { border-bottom: none; }
+
+  .why-check {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(201,168,76,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    color: var(--gold); font-size: 0.7rem;
+  }
+
+  .why-point-title {
+    font-size: 0.9rem; font-weight: 500; margin-bottom: 0.2rem;
+    color: var(--white);
+  }
+  .why-point-sub {
+    font-size: 0.8rem; color: rgba(245,242,237,0.4); line-height: 1.5;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--charcoal); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+  .review-card:hover { border-color: rgba(201,168,76,0.3); }
+
+  .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; }
+
+  .review-text {
+    font-size: 0.88rem; line-height: 1.7;
+    color: rgba(245,242,237,0.6);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .reviewer {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .reviewer-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(201,168,76,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 500; color: var(--gold);
+  }
+
+  .reviewer-name { font-size: 0.85rem; font-weight: 500; }
+  .reviewer-sub { font-size: 0.72rem; color: rgba(245,242,237,0.35); }
+
+  /* ── CONTACT / FOOTER ── */
+  #contact {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+
+  .contact-info { padding-top: 0.5rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(245,242,237,0.06);
+  }
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 2px;
+    background: rgba(201,168,76,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold); font-size: 0.9rem;
+  }
+
+  .contact-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,242,237,0.35); margin-bottom: 0.3rem;
+  }
+
+  .contact-value {
+    font-size: 0.9rem; color: var(--white);
+  }
+
+  .contact-value a {
+    color: var(--white); text-decoration: none; transition: color 0.2s;
+  }
+  .contact-value a:hover { color: var(--gold); }
+
+  .contact-form-wrap {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 0.05em;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .form-sub {
+    font-size: 0.8rem; color: rgba(245,242,237,0.4); margin-bottom: 2rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(245,242,237,0.45); margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,242,237,0.1);
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-group select option { background: #1c1c1c; }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .btn-submit {
+    width: 100%; margin-top: 0.5rem;
+    background: var(--gold); color: var(--black);
+    border: none; cursor: pointer;
+    padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── FOOTER BAR ── */
+  footer {
+    background: var(--charcoal);
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem; color: var(--gold); letter-spacing: 0.08em;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem; color: rgba(245,242,237,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge { animation: fadeUp 0.6s ease 0.2s both; }
+  .hero-title  { animation: fadeUp 0.6s ease 0.35s both; }
+  .hero-sub    { animation: fadeUp 0.6s ease 0.5s both; }
+  .hero-actions{ animation: fadeUp 0.6s ease 0.65s both; }
+  .hero-rating { animation: fadeUp 0.6s ease 0.8s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-rating { position: static; text-align: left; margin-top: 2rem; }
+    section { padding: 4rem 1.5rem; }
+    #why, #contact { grid-template-columns: 1fr; }
+    .why-visual { height: 280px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">DMV Detailers</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines">
+    <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+      <line x1="0" y1="300" x2="1400" y2="300" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="600" x2="1400" y2="600" stroke="white" stroke-width="1"/>
+      <line x1="400" y1="0" x2="400" y2="900" stroke="white" stroke-width="1"/>
+      <line x1="900" y1="0" x2="900" y2="900" stroke="white" stroke-width="1"/>
+      <circle cx="700" cy="450" r="300" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="700" cy="450" r="500" stroke="white" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="hero-badge">Potomac Falls, Virginia · Est. 2020</div>
+
+  <h1 class="hero-title">
+    Your Car.<br>
+    <span>Perfected.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Professional mobile detailing that comes to you in Northern Virginia. Paint correction, ceramic coating, full interior restoration — every detail matters.
+  </p>
+
+  <div class="hero-actions">
+    <a href="tel:+12029778907" class="btn-primary">Call to Book</a>
+    <a href="#services" class="btn-ghost">
+      Explore Services
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="hero-rating">
+    <div class="stars">★★★★★</div>
+    <div class="rating-num">5.0</div>
+    <div class="rating-label">31 Google Reviews</div>
+  </div>
+</header>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+    </div>
+    <p class="services-sub">Mobile detailing that comes to your home or office across the DMV area. No drop-offs, no waiting rooms.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">✦</span>
+      <div class="service-name">Exterior Detail</div>
+      <p class="service-desc">Hand wash, clay bar decontamination, tire dressing, window cleaning, and a protective spray wax for a brilliant finish.</p>
+      <div class="service-price">Starting at $120</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">◈</span>
+      <div class="service-name">Interior Detail</div>
+      <p class="service-desc">Deep vacuum, leather conditioning or fabric shampoo, dashboard and console cleaning, odor elimination, and steam sanitizing.</p>
+      <div class="service-price">Starting at $140</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">◉</span>
+      <div class="service-name">Full Detail</div>
+      <p class="service-desc">The complete package — everything inside and out. Ideal for a deep reset or before a sale. Most popular service.</p>
+      <div class="service-price">Starting at $230</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">◆</span>
+      <div class="service-name">Paint Correction</div>
+      <p class="service-desc">Single or multi-stage machine polish to remove swirl marks, light scratches, and oxidation. Restores deep gloss.</p>
+      <div class="service-price">Starting at $350</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⬡</span>
+      <div class="service-name">Ceramic Coating</div>
+      <p class="service-desc">Professional-grade nano-ceramic protection that bonds to paint for years of hydrophobic, UV-resistant, self-cleaning performance.</p>
+      <div class="service-price">Starting at $600</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">◎</span>
+      <div class="service-name">Headlight Restore</div>
+      <p class="service-desc">Multi-step wet sanding and polishing brings foggy, yellowed headlights back to crystal clarity for improved visibility and appearance.</p>
+      <div class="service-price">Starting at $80</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-visual">
+    <div class="why-block large">
+      <div class="block-tag">Our Promise</div>
+      <div class="block-title">Detail-obsessed.<br>Every single time.</div>
+    </div>
+    <div class="why-block small">
+      <div class="big-num">5★</div>
+      <div class="small-label">31 Reviews</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">The DMV Difference</h2>
+
+    <ul class="why-points" style="margin-top: 2rem;">
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <div class="why-point-title">We Come to You</div>
+          <div class="why-point-sub">Mobile service means zero drop-offs. We detail at your home, office, or wherever works for you across Northern Virginia.</div>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <div class="why-point-title">Professional Products</div>
+          <div class="why-point-sub">We use professional-grade chemicals, microfiber tools, and machine polishers — not the stuff from auto-parts stores.</div>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <div class="why-point-title">Perfect 5-Star Rating</div>
+          <div class="why-point-sub">Thirty-one Google reviews and a perfect score. Our reputation is built one car at a time.</div>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <div class="why-point-title">Flexible Scheduling</div>
+          <div class="why-point-sub">Evening and weekend appointments available. We work around your schedule, not the other way around.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-label">What Customers Say</div>
+  <h2 class="section-title">31 Five-Star Reviews</h2>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Absolutely incredible work. My 2019 BMW looked better than when I drove it off the lot. They were thorough, professional, and on time."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JM</div>
+        <div>
+          <div class="reviewer-name">James M.</div>
+          <div class="reviewer-sub">Google Review · Ashburn, VA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Used them for a full interior detail on my SUV after a long road trip with kids. The transformation was night and day. Highly recommend!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SC</div>
+        <div>
+          <div class="reviewer-name">Sarah C.</div>
+          <div class="reviewer-sub">Google Review · Potomac Falls, VA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Ceramic coating looks phenomenal. They explained every step of the process and the results speak for themselves. Worth every penny."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">DK</div>
+        <div>
+          <div class="reviewer-name">David K.</div>
+          <div class="reviewer-sub">Google Review · Sterling, VA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Book Your Detail</h2>
+    <p style="font-size: 0.9rem; color: rgba(245,242,237,0.45); line-height: 1.7; margin: 1rem 0 2.5rem;">
+      Ready to transform your vehicle? Call us directly or fill in the form and we'll get back to you quickly to confirm your appointment.
+    </p>
+
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value"><a href="tel:+12029778907">(202) 977-8907</a></div>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Service Area</div>
+        <div class="contact-value">Potomac Falls & Northern Virginia</div>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <div class="contact-label">Hours</div>
+        <div class="contact-value">Opens 4:30 PM · Evening &amp; Weekend Service</div>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">⭐</div>
+      <div>
+        <div class="contact-label">Rating</div>
+        <div class="contact-value">5.0 on Google · 31 Reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap">
+    <div class="form-title">Request a Quote</div>
+    <p class="form-sub">We'll confirm availability and pricing within a few hours.</p>
+
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="Alex" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Johnson">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="(703) 555-0100" required>
+      </div>
+
+      <div class="form-group">
+        <label for="service">Service Interested In</label>
+        <select id="service">
+          <option value="">Select a service…</option>
+          <option>Exterior Detail</option>
+          <option>Interior Detail</option>
+          <option>Full Detail</option>
+          <option>Paint Correction</option>
+          <option>Ceramic Coating</option>
+          <option>Headlight Restoration</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicle">Vehicle (Year, Make, Model)</label>
+        <input type="text" id="vehicle" placeholder="e.g. 2021 Toyota Camry">
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Additional Notes</label>
+        <textarea id="notes" placeholder="Anything we should know about the condition of your vehicle?"></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Send Request</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DMV Detailers</div>
+  <div class="footer-copy">© 2025 DMV Detailers · Potomac Falls, VA 20165 · (202) 977-8907</div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = 'Request Sent ✓';
+  btn.style.background = '#3B6D11';
+  btn.style.color = '#EAF3DE';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Send Request';
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 3000);
+}
+</script>
+
+</body>
+</html>
